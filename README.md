@@ -40,6 +40,25 @@ const sourceCode = `
 let output = await compiler(sourceCode);
 ```
 
+**await compiler(sourceCode);**
+
+```js
+let compiler = await solcjs();
+
+const sourceCode = `
+  library OldLibrary {
+      function someFunction(uint8 a) public returns(bool);
+  }
+
+  contract NewContract {
+      function f(uint8 a) public returns (bool) {
+          return OldLibrary.someFunction(a);
+      }
+  }`;
+
+let output = await compiler(sourceCode);
+```
+
 **await compiler(sourceCode, getImportContent)**
 
 ```js
@@ -70,25 +89,6 @@ const getImportContent = async function (path) {
 };
 
 let output = await compiler(sourceCode, getImportContent);
-```
-
-**await compiler(sourceCode);**
-
-```js
-let compiler = await solcjs();
-
-const sourceCode = `
-  library OldLibrary {
-      function someFunction(uint8 a) public returns(bool);
-  }
-
-  contract NewContract {
-      function f(uint8 a) public returns (bool) {
-          return OldLibrary.someFunction(a);
-      }
-  }`;
-
-let output = await compiler(sourceCode);
 ```
 
 **await solcjs(version).version**
