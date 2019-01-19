@@ -40,6 +40,41 @@ const sourceCode = `
 let output = await compiler(sourceCode);
 ```
 
+**await solcjs(version).version**
+
+```js
+const version = 'v0.4.25-stable-2018.09.13';
+let compiler = await solcjs(version);
+console.dir(compiler.version);
+// { name: 'v0.4.25-stable-2018.09.13',
+// url: 'https://solc-bin.ethereum.org/bin/soljson-v0.4.25+commit.59dbf8f1.js' }
+```
+
+**await solcjs.versions()**
+
+```js
+let select = await solcjs.versions();
+const { releases, nightly, all } = select;
+console.log(releases[0]);
+// v0.4.25-stable-2018.09.13
+```
+
+**await solcjs.version2url(version)**
+
+```js
+let version = 'v0.4.25-stable-2018.09.13';
+let url = await solcjs.version2url(version);
+console.log(url);
+// https://solc-bin.ethereum.org/bin/soljson-v0.4.25+commit.59dbf8f1.js
+```
+
+```js
+let version = 'latest';
+let url = await solcjs.version2url(version);
+console.log(url);
+// https://solc-bin.ethereum.org/bin/soljson-v0.1.1+commit.6ff4cd6.js
+```
+
 **await compiler(sourceCode);**
 
 ```js
@@ -89,44 +124,6 @@ const getImportContent = async function (path) {
 };
 
 let output = await compiler(sourceCode, getImportContent);
-```
-
-**await solcjs(version).version**
-
-```js
-const version = 'v0.4.25-stable-2018.09.13';
-let compiler = await solcjs(version);
-console.dir(compiler.version);
-// { name: 'v0.4.25-stable-2018.09.13',
-// url: 'https://solc-bin.ethereum.org/bin/soljson-v0.4.25+commit.59dbf8f1.js' }
-```
-
-**await solcjs.versions()**
-
-```js
-const solcjs = require('solc-js');
-let select = await solcjs.versions();
-const { releases, nightly, all } = select;
-console.log(releases[0]);
-// v0.4.25-stable-2018.09.13
-```
-
-**await solcjs.version2url(version)**
-
-```js
-const solcjs = require('solc-js');
-let version = 'v0.4.25-stable-2018.09.13';
-let url = await solcjs.version2url(version);
-console.log(url);
-// https://solc-bin.ethereum.org/bin/soljson-v0.4.25+commit.59dbf8f1.js
-```
-
-```js
-const solcjs = require('solc-js');
-let version = 'latest';
-let url = await solcjs.version2url(version);
-console.log(url);
-// https://solc-bin.ethereum.org/bin/soljson-v0.1.1+commit.6ff4cd6.js
 ```
 
 ## License
