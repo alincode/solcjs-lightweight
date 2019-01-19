@@ -10,6 +10,13 @@
 npm install solcjs-lightweight
 ```
 
+### Relevant Projects
+
+* [solcjs-core](https://github.com/alincode/solcjs-core)
+
+## License
+MIT © [alincode](https://github.com/alincode/solcjs-lightweight)
+
 ### Usage
 
 ```js
@@ -125,6 +132,3 @@ const getImportContent = async function (path) {
 
 let output = await compiler(sourceCode, getImportContent);
 ```
-
-## License
-MIT © [alincode](https://github.com/alincode/solcjs-lightweight)
