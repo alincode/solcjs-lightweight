@@ -133,6 +133,8 @@ const ResolverEngine = require('solc-resolver').ResolverEngine;
 let resolverEngine = new ResolverEngine();
 let resolveGithub = require('resolve-github');
 resolverEngine.addResolver(resolveGithub);
+let resolveIpfs = require('resolve-ipfs');
+resolverEngine.addResolver(resolveIpfs);
 
 const getImportContent = async function (path) {
   return myDB.has(path) ? myDB.get(path) : await resolverEngine.require(path);
