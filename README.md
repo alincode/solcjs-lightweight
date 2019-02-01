@@ -19,12 +19,10 @@ MIT © [alincode](https://github.com/alincode/solcjs-lightweight)
 
 ### Usage
 
-```js
-const solcjs = require('solcjs-lightweight');
-```
 **await solcjs(version)**
 
 ```js
+const solcjs = require('solcjs-lightweight');
 const version = 'v0.5.1-stable-2018.12.03';
 let compiler = await solcjs(version);
 
@@ -50,6 +48,7 @@ let output = await compiler(sourceCode);
 **await solcjs(version).version**
 
 ```js
+const solcjs = require('solcjs-lightweight');
 const version = 'v0.4.25-stable-2018.09.13';
 let compiler = await solcjs(version);
 console.dir(compiler.version);
@@ -60,6 +59,7 @@ console.dir(compiler.version);
 **await solcjs.versions()**
 
 ```js
+const solcjs = require('solcjs-lightweight');
 let select = await solcjs.versions();
 const { releases, nightly, all } = select;
 console.log(releases[0]);
@@ -69,6 +69,7 @@ console.log(releases[0]);
 **await solcjs.version2url(version)**
 
 ```js
+const solcjs = require('solcjs-lightweight');
 let version = 'v0.4.25-stable-2018.09.13';
 let url = await solcjs.version2url(version);
 console.log(url);
@@ -76,6 +77,7 @@ console.log(url);
 ```
 
 ```js
+const solcjs = require('solcjs-lightweight');
 let version = 'latest';
 let url = await solcjs.version2url(version);
 console.log(url);
@@ -85,6 +87,7 @@ console.log(url);
 **await compiler(sourceCode);**
 
 ```js
+const solcjs = require('solcjs-lightweight');
 let compiler = await solcjs();
 
 const sourceCode = `
@@ -104,9 +107,9 @@ let output = await compiler(sourceCode);
 **await compiler(sourceCode, getImportContent)**
 
 ```js
+const solcjs = require('solcjs-lightweight');
 const version = 'v0.5.1-stable-2018.12.03';
 let compiler = await solcjs(version);
-const solcResolver = require('solc-resolver');
 
 const sourceCode = `
   pragma solidity >0.4.99 <0.6.0;
@@ -126,8 +129,13 @@ const sourceCode = `
 let myDB = new Map();
 myDB.set('lib.sol', 'library L { function f() internal returns (uint) { return 7; } }');
 
+const ResolverEngine = require('solc-resolver').ResolverEngine;
+let resolverEngine = new ResolverEngine();
+let resolveGithub = require('resolve-github');
+resolverEngine.addResolver(resolveGithub);
+
 const getImportContent = async function (path) {
-  return myDB.has(path) ? myDB.get(path) : await solcResolver.getImportContent(path);
+  return myDB.has(path) ? myDB.get(path) : await resolverEngine.require(path);
 };
 
 let output = await compiler(sourceCode, getImportContent);
