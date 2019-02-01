@@ -1,4 +1,4 @@
-require('./utils/mock')();
+require('solcjs-mock')();
 
 const chai = require('chai');
 chai.should();
@@ -21,7 +21,7 @@ describe('index', () => {
   it('solcjs.versions()', async () => {
     let select = await solcjs.versions();
     const { releases, nightly, all } = select;
-    releases[0].should.be.eq('v0.5.2-stable-2018.12.19');
+    releases[0].indexOf('stable').should.be.above(-1);
   });
 
   it('solcjs.versions()', async () => {
