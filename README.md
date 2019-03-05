@@ -129,7 +129,7 @@ const sourceCode = `
 let myDB = new Map();
 myDB.set('lib.sol', 'library L { function f() internal returns (uint) { return 7; } }');
 
-const ResolverEngine = require('solc-resolver').ResolverEngine;
+const ResolverEngine = require('solc-resolver').resolverEngine;
 let resolverEngine = new ResolverEngine();
 let resolveGithub = require('resolve-github');
 resolverEngine.addResolver(resolveGithub);

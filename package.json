@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/alincode/solcjs-lightweight#readme",
   "dependencies": {
-    "solcjs-core": "^0.2.0"
+    "solcjs-core": "^0.3.0"
   },
   "devDependencies": {
     "chai": "^4.2.0",
@@ -42,6 +42,10 @@
     "mocha": "^5.2.0",
     "mock-browser": "^0.92.14",
     "nyc": "^13.1.0",
+    "resolve-github": "^0.1.0",
+    "resolve-http": "^0.2.0",
+    "resolve-ipfs": "^0.1.0",
+    "solc-resolver": "^0.2.1",
     "solcjs-mock": "0.0.1"
   }
 }
